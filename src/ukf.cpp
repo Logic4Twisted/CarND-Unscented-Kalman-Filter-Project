@@ -74,6 +74,7 @@ UKF::~UKF() {}
  * either radar or laser.
  */
 void UKF::ProcessMeasurement(MeasurementPackage meas_package) {
+
   //std::cout << "Process measurement " << meas_package.sensor_type_ << std::endl;
   //std::cout << "Raw data :" << meas_package.raw_measurements_ << std::endl;
   if (meas_package.sensor_type_ == MeasurementPackage::LASER && !use_laser_) return;
@@ -134,12 +135,6 @@ void UKF::ProcessMeasurement(MeasurementPackage meas_package) {
  * measurement and this one.
  */
 void UKF::Prediction(double delta_t) {
-  /**
-  TODO:
-
-  Complete this function! Estimate the object's location. Modify the state
-  vector, x_. Predict sigma points, the state, and the state covariance matrix.
-  */
   //std::cout << "---------------------------- Prediction step "  << delta_t << std::endl;
 
   VectorXd x_aug = VectorXd(n_aug_);
@@ -226,14 +221,7 @@ void UKF::Prediction(double delta_t) {
  * @param {MeasurementPackage} meas_package
  */
 void UKF::UpdateLidar(MeasurementPackage meas_package) {
-  /**
-  TODO:
 
-  Complete this function! Use lidar data to update the belief about the object's
-  position. Modify the state vector, x_, and covariance, P_.
-
-  You'll also need to calculate the lidar NIS.
-  */
   //std::cout << "----------------------------- Update lidar" << std::endl;
   MatrixXd Zsig = MatrixXd(2, 2 * n_aug_ + 1);
   for (int i = 0; i < 2 * n_aug_ + 1; i++) {
@@ -303,14 +291,6 @@ void UKF::UpdateLidar(MeasurementPackage meas_package) {
  * @param {MeasurementPackage} meas_package
  */
 void UKF::UpdateRadar(MeasurementPackage meas_package) {
-  /**
-  TODO:
-
-  Complete this function! Use radar data to update the belief about the object's
-  position. Modify the state vector, x_, and covariance, P_.
-
-  You'll also need to calculate the radar NIS.
-  */
 
   //transform sigma points into measurement space
   //std::cout << "----------------------------- Update radar" << std::endl;
