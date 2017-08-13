@@ -406,6 +406,7 @@ void UKF::UpdateRadar(MeasurementPackage meas_package) {
 }
 
 double UKF::AngleNormalization(double angle) {
+  // if angle is to large then error is significant therefore just return 0
   if (fabs(angle) > 1.0/EPSILON) return 0.0;
   while (angle >  M_PI) angle -= M_PI;
   while (angle < -M_PI) angle += M_PI;
