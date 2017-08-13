@@ -10,6 +10,8 @@
 using Eigen::MatrixXd;
 using Eigen::VectorXd;
 
+const double EPSILON = 0.00001;
+
 class UKF {
 public:
 
@@ -66,8 +68,6 @@ public:
 
   ///* Sigma point spreading parameter
   double lambda_;
-
-
   /**
    * Constructor
    */
@@ -102,6 +102,8 @@ public:
    * @param meas_package The measurement at k+1
    */
   void UpdateRadar(MeasurementPackage meas_package);
+
+  double AngleNormalization(double angle);
 };
 
 #endif /* UKF_H */
